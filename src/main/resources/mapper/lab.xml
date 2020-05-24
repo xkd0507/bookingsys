@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.bookingsys.mapper.LabMapper">
+    <select id="getLabList" resultType="com.sys.bookingsys.domain.Lab">
+        select labId, labName, labCap, labAddition
+        from lab
+    </select>
+
+    <delete id="deleteLabByLabId" parameterType="java.lang.Integer">
+        delete from lab where labId = #{labId}
+    </delete>
+
+    <update id="editLabByLabId" parameterType="com.sys.bookingsys.domain.Lab">
+        update lab set labName=#{labName},
+                       labCap=#{labCap},
+                       labAddition=#{labAddition}
+                   where labId=#{labId}
+    </update>
+
+    <insert id="addLabByHand" parameterType="com.sys.bookingsys.domain.Lab">
+        insert into lab(labName, labCap, labAddition)
+                values (#{labName},#{labCap},#{labAddition})
+    </insert>
+
+</mapper>

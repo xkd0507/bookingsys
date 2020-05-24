@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.bookingsys.mapper.CourseTableMapper">
+    <select id="getCourseTable" parameterType="java.lang.Integer" resultType="com.sys.bookingsys.domain.CourseTable">
+        select coursetable.id, coursetable.courseId, coursetable.weekEst,
+                coursetable.dayEst,coursetable.section, teacher.teacherId,
+                teacher.teacherName, course.courseName, lab.labName
+        from course, teachcourse, teacher, coursetable, lab
+        where coursetable.weekEst=#{weekEst} and coursetable.courseId = course.courseId
+                and teachcourse.courseId = course.courseId
+                and teachcourse.teacherId = teacher.teacherId
+                and course.courseLab = lab.labId
+    </select>
+
+    <!--<delete id="deleteCourseByCourseId" parameterType="java.lang.Integer">
+        delete from course where courseId = #{courseId}
+    </delete>
+
+    <update id="editCourseByCourseId" parameterType="com.sys.bookingsys.domain.Course">
+        update course set courseName=#{courseName},
+                       courseNumber=#{courseNumber},
+                       courseOrder=#{courseOrder},
+                       courseHours=#{courseHours},
+                       courseStuNum=#{courseStuNum},
+                       courseLab=#{courseLab}
+                   where courseId=#{courseId}
+    </update>
+
+    <insert id="addCourseByHand" parameterType="com.sys.bookingsys.domain.Course">
+        insert into course(courseName, courseNumber, courseOrder,courseHours,courseStuNum,courseLab)
+                values (#{courseName},#{courseNumber},#{courseOrder},
+                        #{courseHours},#{courseStuNum},#{courseLab})
+    </insert>-->
+
+</mapper>

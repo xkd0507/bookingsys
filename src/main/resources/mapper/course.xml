@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.bookingsys.mapper.CourseMapper">
+    <select id="getCourseList" resultType="com.sys.bookingsys.domain.Course">
+        select * from course
+    </select>
+
+    <delete id="deleteCourseByCourseId" parameterType="java.lang.Integer">
+        delete from course where courseId = #{courseId}
+    </delete>
+
+    <update id="editCourseByCourseId" parameterType="com.sys.bookingsys.domain.Course">
+        update course set courseName=#{courseName},
+                       courseNumber=#{courseNumber},
+                       courseOrder=#{courseOrder},
+                       courseHours=#{courseHours},
+                       courseStuNum=#{courseStuNum},
+                       courseLab=#{courseLab}
+                   where courseId=#{courseId}
+    </update>
+
+    <insert id="addCourseByHand" parameterType="com.sys.bookingsys.domain.Course">
+        insert into course(courseName, courseNumber, courseOrder,courseHours,courseStuNum,courseLab)
+                values (#{courseName},#{courseNumber},#{courseOrder},
+                        #{courseHours},#{courseStuNum},#{courseLab})
+    </insert>
+
+</mapper>

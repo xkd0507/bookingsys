@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.bookingsys.mapper.AdminTeaMapper">
+    <select id="getTeaList" resultType="com.sys.bookingsys.domain.Teacher">
+        select * from teacher
+    </select>
+
+
+    <select id="getOneTea" resultType="com.sys.bookingsys.domain.Teacher" parameterType="java.lang.Integer">
+        select * from teacher where teacherId=#{teacherId}
+    </select>
+
+    <delete id="deleteTeaByTeaId" parameterType="java.lang.Integer">
+        delete from teacher where teacherId = #{teacherId}
+    </delete>
+
+    <update id="editTeaByTeaId" parameterType="com.sys.bookingsys.domain.Teacher">
+        update teacher set teacherName=#{teacherName},
+                       teacherPassword=#{teacherPassword},
+                       telephone=#{telephone},
+                       departId=#{departId}
+                   where teacherId=#{teacherId}
+    </update>
+
+    <insert id="addTeaByHand" parameterType="com.sys.bookingsys.domain.Teacher">
+        insert into teacher(teacherName, teacherPassword, telephone,departId)
+                values (#{teacherName},#{teacherPassword},#{telephone},
+                        #{departId})
+    </insert>
+
+</mapper>
